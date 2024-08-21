@@ -1,0 +1,54 @@
+unit Backend.Controller.Pagamento;
+
+interface
+
+uses
+  Horse, FireDAC.Comp.Client, System.JSON, FireDAC.DApt,
+  Backend.Dto.RetornoVenda, Rest.Json, OverbyteIcsMQTT, Backend.Model.VendaPag,
+  Backend.Dao.VendaPag;
+
+type
+  TControllerPagamento = class
+  private
+    FConexao: TFDConnection;
+    FMqtt: TIcsMQTTClient;
+  public
+    constructor Create(AConexao: TFDConnection);
+    procedure PostPagamento(AJsonString: string);
+    procedure SetMensageiro(AValue: TIcsMQTTClient);
+  end;
+
+implementation
+
+{ TControllerVenda }
+
+constructor TControllerPagamento.Create(AConexao: TFDConnection);
+begin
+  FConexao := AConexao;
+end;
+
+procedure TControllerPagamento.PostPagamento(AJsonString: string);
+var
+  LJsonPagamento: TJSONObject;
+  LPagamento: TVendaPag;
+  LDaoPagamento: TDaoVendaPag;
+begin
+  LJsonPagamento := TJSONObject.ParseJSONValue(AJsonString) as TJSONObject;
+  try
+    LPagamento.IdVenda := LJsonPagamento.GetValue<integer>('id');
+    LPagamento.Valor := LJsonPagamento.GetValue<Currency>('valor');
+    LPagamento.Forma := LJsonPagamento.GetValue<String>('forma');
+    Lpagamento.Situacao := LJsonPagamento.GetValue<String>('situacao');
+
+    FMqtt.Publish('/mqtt/payment-response-pdv',AJsonString,qtAT_LEAST_ONCE);
+  finally
+    LJsonPagamento.Free
+  end;
+end;
+
+procedure TControllerPagamento.SetMensageiro(AValue: TIcsMQTTClient);
+begin
+  FMqtt := AValue;
+end;
+
+end.

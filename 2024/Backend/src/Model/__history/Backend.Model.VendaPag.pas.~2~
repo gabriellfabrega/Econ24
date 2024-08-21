@@ -1,0 +1,17 @@
+unit Backend.Model.VendaPag;
+
+interface
+
+type
+  TVendaPag = class
+  private
+  	FId: Integer;
+	  FIdVenda: Integer;
+	VALOR NUMERIC,
+	FORMA TEXT,
+	SITUACAO TEXT
+  end;
+
+implementation
+
+end.

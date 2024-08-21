@@ -1,0 +1,114 @@
+unit Backend.View.Principal;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Horse, OverbyteIcsMQTT,
+  Horse.Jhonson, Backend.Controller.Venda, FireDAC.Stan.Intf,
+  FireDAC.Stan.Option, FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf,
+  FireDAC.Stan.Def, FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys,
+  FireDAC.VCLUI.Wait, Data.DB, FireDAC.Comp.Client, FireDAC.Phys.PG,
+  FireDAC.Phys.PGDef, Backend.Controller.Pagamento;
+
+type
+  TViewPrincipal = class(TForm)
+    mLog: TMemo;
+    IcsMQTTClient1: TIcsMQTTClient;
+    FDConnection1: TFDConnection;
+    FDPhysPgDriverLink1: TFDPhysPgDriverLink;
+    procedure IcsMQTTClient1ClientID(Sender: TObject;
+      var aClientID: UTF8String);
+    procedure IcsMQTTClient1EnableChange(Sender: TObject);
+    procedure IcsMQTTClient1Failure(Sender: TObject; aReason: Integer;
+      var CloseClient: Boolean);
+    procedure IcsMQTTClient1Mon(Sender: TObject; const aStr: string);
+    procedure IcsMQTTClient1Msg(Sender: TObject; aTopic: UTF8String;
+      const aMessage: AnsiString; aQos: TMQTTQOSType; aRetained: Boolean);
+    procedure IcsMQTTClient1Offline(Sender: TObject; Graceful: Boolean);
+    procedure IcsMQTTClient1Online(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
+  private
+    FControllerVenda: TControllerVenda;
+    FControllerPagamento: TControllerPagamento;
+  public
+    { Public declarations }
+  end;
+
+var
+  ViewPrincipal: TViewPrincipal;
+
+implementation
+
+{$R *.dfm}
+
+procedure TViewPrincipal.FormCreate(Sender: TObject);
+begin
+  FControllerVenda := TControllerVenda.Create(FDConnection1);
+  FControllerVenda.SetMensageiro(IcsMQTTClient1);
+
+  THorse.Post('/venda',FControllerVenda.PostVenda);
+
+  THorse.Use(Jhonson);
+  THorse.Listen(8080,
+    procedure()
+    begin
+      mLog.Lines.Add('Servidor online ' + THorse.Port.ToString);
+      Self.IcsMQTTClient1.Activate(true);
+      Self.IcsMQTTClient1.Subscribe('/payment-response-pdv',qtAT_LEAST_ONCE);
+    end);
+
+end;
+
+procedure TViewPrincipal.FormDestroy(Sender: TObject);
+begin
+  FControllerVenda.Free;
+  IcsMQTTClient1.Activate(false);
+end;
+
+procedure TViewPrincipal.IcsMQTTClient1ClientID(Sender: TObject;
+  var aClientID: UTF8String);
+begin
+  mLog.Lines.Add('[CLIENT ID] - ' + String(aClientID));
+end;
+
+procedure TViewPrincipal.IcsMQTTClient1EnableChange(Sender: TObject);
+begin
+  mLog.Lines.Add('[CHANGED]');
+end;
+
+procedure TViewPrincipal.IcsMQTTClient1Failure(Sender: TObject;
+  aReason: Integer; var CloseClient: Boolean);
+begin
+  mLog.Lines.Add('[FAILURE] - ' + aReason.ToString);
+end;
+
+procedure TViewPrincipal.IcsMQTTClient1Mon(Sender: TObject; const aStr: string);
+begin
+  mLog.Lines.Add('[MONITOR] - ' + aStr);
+end;
+
+procedure TViewPrincipal.IcsMQTTClient1Msg(Sender: TObject; aTopic: UTF8String;
+  const aMessage: AnsiString; aQos: TMQTTQOSType; aRetained: Boolean);
+begin
+  mLog.Lines.Add('[MENSAGEM] --------------------------');
+  mLog.Lines.Add('Topico: ' + aTopic);
+  mLog.Lines.Add('Payload: ' + aMessage);
+  mLog.Lines.Add('QoS: ' + Ord(aQos).ToString);
+  mLog.Lines.Add('-------------------------------------');
+end;
+
+procedure TViewPrincipal.IcsMQTTClient1Offline(Sender: TObject;
+  Graceful: Boolean);
+begin
+  mLog.Lines.Add('[OFFLINE] - Desconectado');
+end;
+
+procedure TViewPrincipal.IcsMQTTClient1Online(Sender: TObject);
+begin
+  mLog.Lines.Add('[ONLINE] - Conectado');
+end;
+
+
+end.

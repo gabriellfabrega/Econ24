@@ -1,0 +1,7 @@
+unit Backend.Model.VendaPag;
+
+interface
+
+implementation
+
+end.

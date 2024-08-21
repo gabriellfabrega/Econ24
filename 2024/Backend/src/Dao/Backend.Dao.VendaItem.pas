@@ -1,0 +1,57 @@
+unit Backend.Dao.VendaItem;
+
+interface
+
+uses
+  Backend.Model.VendaItem, FireDAC.Comp.Client, System.SysUtils, System.Generics.Collections;
+
+type
+  TDaoVendaItem = class
+  private
+    FConnection: TFDConnection;
+  public
+    constructor Create(AConexao: TFDConnection);
+    procedure Inserir(AItens: TObjectList<TVendaItem>);
+  end;
+
+implementation
+
+{ TDaoVenda }
+
+constructor TDaoVendaItem.Create(AConexao: TFDConnection);
+begin
+  FConnection := AConexao;
+end;
+
+procedure TDaoVendaItem.Inserir(AItens: TObjectList<TVendaItem>);
+var
+  LQuery: TFDQuery;
+  LItem: TVendaItem;
+begin
+  LQuery := TFDQuery.Create(nil);
+  try
+    LQuery.Connection := FConnection;
+    LQuery.SQL.Text := 'INSERT INTO vendaitem '+
+      '(idvenda, item, qtd, preco, total) '+
+      'VALUES ' +
+      '(:idvenda, :item, :qtd, :preco, :total)';
+
+    for LItem in AItens do
+    begin
+      LQuery.Close;
+
+      LQuery.ParamByName('idvenda').AsInteger := LItem.IdVenda;
+      LQuery.ParamByName('item').AsString := LItem.Item;
+      LQuery.ParamByName('qtd').AsInteger := LItem.Qtd;
+      LQuery.ParamByName('preco').Value := LItem.Preco;
+      LQuery.ParamByName('total').Value := LItem.Total;
+      LQuery.ExecSQL;
+    end;
+
+  finally
+    LQuery.Free;
+  end;
+end;
+
+end.
+

@@ -1,0 +1,51 @@
+unit Controller.Item;
+
+interface
+
+uses
+  FireDAC.Comp.Client, Data.DB;
+
+type
+  TControllerItem = class
+  private
+    FMemtable: TFDMemTable;
+  public
+    constructor Create(AMemtable: TFDMemTable);
+    procedure Adicionar(AItem: string; APreco: Currency);
+    procedure NovaVenda;
+  end;
+
+implementation
+
+{ TControllerItem }
+
+procedure TControllerItem.Adicionar(AItem: string; APreco: Currency);
+begin
+  if FMemTable.Locate('item',AItem,[loCaseInsensitive]) then
+  begin
+    FMemTable.Edit;
+    FMemTable.FieldByName('qtd').AsInteger := AMemTable.FieldByName('qtd').AsInteger + 1;
+    FMemTable.Post;
+  end
+  else
+  begin
+    FMemTable.Edit;
+    FMemTable.FieldByName('item').AsString := AItem;
+    FMemTable.FieldByName('qtd').AsInteger := 1;
+    FMemTable.FieldByName('preco').AsCurrency := APreco;
+    FMemTable.Post;
+  end;
+end;
+
+constructor TControllerItem.Create(AMemtable: TFDMemTable);
+begin
+  FMemtable := AMemtable;
+end;
+
+procedure TControllerItem.NovaVenda;
+begin
+  if not  then
+
+end;
+
+end.

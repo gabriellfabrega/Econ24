@@ -1,0 +1,410 @@
+object ViewPrincipal: TViewPrincipal
+  Left = 0
+  Top = 0
+  Margins.Top = 10
+  BorderIcons = [biSystemMenu, biMinimize]
+  Caption = 'ConferencePDV'
+  ClientHeight = 640
+  ClientWidth = 1008
+  Color = clWhite
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -12
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  Position = poDesktopCenter
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  TextHeight = 15
+  object pnTop: TPanel
+    AlignWithMargins = True
+    Left = 10
+    Top = 10
+    Width = 988
+    Height = 57
+    Margins.Left = 10
+    Margins.Top = 10
+    Margins.Right = 10
+    Margins.Bottom = 10
+    Align = alTop
+    BevelOuter = bvNone
+    Color = clWhite
+    ParentBackground = False
+    TabOrder = 0
+    ExplicitWidth = 984
+    object lblTitulo: TLabel
+      Left = 10
+      Top = 9
+      Width = 184
+      Height = 37
+      Caption = 'ConferencePDV'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+  end
+  object flpItens: TFlowPanel
+    AlignWithMargins = True
+    Left = 10
+    Top = 80
+    Width = 559
+    Height = 550
+    Margins.Left = 10
+    Margins.Right = 10
+    Margins.Bottom = 10
+    Align = alClient
+    BevelOuter = bvNone
+    Padding.Left = 7
+    Padding.Top = 7
+    Padding.Right = 7
+    Padding.Bottom = 7
+    ParentBackground = False
+    ParentColor = True
+    TabOrder = 1
+    ExplicitTop = 87
+    ExplicitWidth = 670
+    ExplicitHeight = 542
+    inline ViewItem1: TViewItem
+      AlignWithMargins = True
+      Left = 10
+      Top = 10
+      Width = 165
+      Height = 252
+      Color = 15790320
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentBackground = False
+      ParentColor = False
+      ParentFont = False
+      TabOrder = 0
+      ExplicitLeft = 10
+      ExplicitTop = 10
+      ExplicitWidth = 165
+      inherited imgItem: TImage
+        Width = 159
+      end
+      inherited lblDescItem: TLabel
+        Width = 159
+        Caption = 'CERVEJA'
+        ExplicitWidth = 206
+      end
+      inherited lblPreco: TLabel
+        Width = 159
+        Caption = '9,00'
+      end
+      inherited btnAdicionar: TButton
+        Width = 159
+      end
+    end
+    inline ViewItem2: TViewItem
+      AlignWithMargins = True
+      Left = 181
+      Top = 10
+      Width = 165
+      Height = 252
+      Color = 15790320
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentBackground = False
+      ParentColor = False
+      ParentFont = False
+      TabOrder = 1
+      ExplicitLeft = 181
+      ExplicitTop = 10
+      ExplicitWidth = 165
+      inherited imgItem: TImage
+        Width = 159
+      end
+      inherited lblDescItem: TLabel
+        Width = 159
+        Caption = 'REFRIGERANTE'
+        ExplicitWidth = 206
+      end
+      inherited lblPreco: TLabel
+        Width = 159
+        Caption = '6,00'
+      end
+      inherited btnAdicionar: TButton
+        Width = 159
+      end
+    end
+    inline ViewItem3: TViewItem
+      AlignWithMargins = True
+      Left = 352
+      Top = 10
+      Width = 165
+      Height = 252
+      Color = 15790320
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentBackground = False
+      ParentColor = False
+      ParentFont = False
+      TabOrder = 2
+      ExplicitLeft = 352
+      ExplicitTop = 10
+      ExplicitWidth = 165
+      inherited imgItem: TImage
+        Width = 159
+      end
+      inherited lblDescItem: TLabel
+        Width = 159
+        Caption = 'X-TUDO'
+        ExplicitWidth = 206
+      end
+      inherited lblPreco: TLabel
+        Width = 159
+        Caption = '22,00'
+        ExplicitWidth = 48
+      end
+      inherited btnAdicionar: TButton
+        Width = 159
+      end
+    end
+    inline ViewItem4: TViewItem
+      AlignWithMargins = True
+      Left = 10
+      Top = 268
+      Width = 165
+      Height = 252
+      Color = 15790320
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentBackground = False
+      ParentColor = False
+      ParentFont = False
+      TabOrder = 3
+      ExplicitLeft = 10
+      ExplicitTop = 268
+      ExplicitWidth = 165
+      inherited imgItem: TImage
+        Width = 159
+      end
+      inherited lblDescItem: TLabel
+        Width = 159
+        Caption = 'PETIT GATEAU'
+        ExplicitWidth = 206
+      end
+      inherited lblPreco: TLabel
+        Width = 159
+        Caption = '26,00'
+        ExplicitWidth = 48
+      end
+      inherited btnAdicionar: TButton
+        Width = 159
+      end
+    end
+  end
+  object Panel1: TPanel
+    AlignWithMargins = True
+    Left = 584
+    Top = 80
+    Width = 414
+    Height = 550
+    Margins.Left = 5
+    Margins.Right = 10
+    Margins.Bottom = 10
+    Align = alRight
+    BevelOuter = bvNone
+    Caption = 'Panel1'
+    ParentBackground = False
+    ParentColor = True
+    TabOrder = 2
+    ExplicitLeft = 616
+    ExplicitTop = 56
+    ExplicitHeight = 543
+    object lblForma: TLabel
+      Left = 176
+      Top = 406
+      Width = 187
+      Height = 28
+      Caption = 'Forma de Pagamento'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+    end
+    object DBGrid1: TDBGrid
+      Left = 0
+      Top = 0
+      Width = 414
+      Height = 400
+      Align = alTop
+      DataSource = dsItens
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clWindowText
+      TitleFont.Height = -12
+      TitleFont.Name = 'Segoe UI'
+      TitleFont.Style = []
+      Columns = <
+        item
+          Expanded = False
+          FieldName = 'item'
+          Width = 177
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'qtd'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'preco'
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'total'
+          Visible = True
+        end>
+    end
+    object edtSubtotal: TDBLabeledEdit
+      Left = 0
+      Top = 440
+      Width = 164
+      Height = 45
+      DataField = 'subtotal'
+      DataSource = dsItens
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 1
+      EditLabel.Width = 75
+      EditLabel.Height = 28
+      EditLabel.Caption = 'Subtotal'
+      EditLabel.Font.Charset = DEFAULT_CHARSET
+      EditLabel.Font.Color = clWindowText
+      EditLabel.Font.Height = -20
+      EditLabel.Font.Name = 'Segoe UI'
+      EditLabel.Font.Style = []
+      EditLabel.ParentFont = False
+      EditLabel.Layout = tlCenter
+    end
+    object cbxForma: TComboBox
+      Left = 176
+      Top = 440
+      Width = 238
+      Height = 45
+      Style = csDropDownList
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -27
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ItemIndex = 0
+      ParentFont = False
+      TabOrder = 2
+      Text = 'PIX'
+      Items.Strings = (
+        'PIX')
+    end
+    object btnFinalizar: TButton
+      AlignWithMargins = True
+      Left = 3
+      Top = 504
+      Width = 408
+      Height = 43
+      Align = alBottom
+      Caption = 'Finalizar'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -20
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+      ExplicitTop = 206
+      ExplicitWidth = 206
+    end
+    object Memo1: TMemo
+      Left = 32
+      Top = 182
+      Width = 345
+      Height = 147
+      Lines.Strings = (
+        'Memo1')
+      TabOrder = 4
+    end
+  end
+  object mtbItens: TFDMemTable
+    AggregatesActive = True
+    FetchOptions.AssignedValues = [evMode]
+    FetchOptions.Mode = fmAll
+    ResourceOptions.AssignedValues = [rvSilentMode]
+    ResourceOptions.SilentMode = True
+    UpdateOptions.AssignedValues = [uvCheckRequired, uvAutoCommitUpdates]
+    UpdateOptions.CheckRequired = False
+    UpdateOptions.AutoCommitUpdates = True
+    Left = 480
+    Top = 400
+    object mtbItensitem: TStringField
+      FieldName = 'item'
+      Size = 50
+    end
+    object mtbItensqtd: TIntegerField
+      FieldName = 'qtd'
+    end
+    object mtbItenspreco: TCurrencyField
+      FieldName = 'preco'
+    end
+    object mtbItenstotal: TCurrencyField
+      FieldName = 'total'
+    end
+    object mtbItenssubtotal: TAggregateField
+      FieldName = 'subtotal'
+      Active = True
+      currency = True
+      DisplayName = ''
+      Expression = 'sum(total)'
+    end
+  end
+  object dsItens: TDataSource
+    AutoEdit = False
+    DataSet = mtbItens
+    Left = 482
+    Top = 463
+  end
+  object IcsMQTTClient1: TIcsMQTTClient
+    KeepAlive = 10
+    MaxRetries = 8
+    RetryTime = 60
+    Clean = True
+    Broker = False
+    AutoSubscribe = False
+    Host = 'ec2-54-175-73-62.compute-1.amazonaws.com'
+    Port = 8083
+    LocalBounce = False
+    SslVerifyCerts = False
+    SslReportChain = False
+    SslRevocation = False
+    SslCliSecurity = sslCliSecIgnore
+    OnMon = IcsMQTTClient1Mon
+    OnOnline = IcsMQTTClient1Online
+    OnOffline = IcsMQTTClient1Offline
+    OnFailure = IcsMQTTClient1Failure
+    Left = 344
+    Top = 448
+  end
+end

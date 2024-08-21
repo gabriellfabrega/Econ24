@@ -1,0 +1,16 @@
+object ViewItem: TViewItem
+  Left = 0
+  Top = 0
+  Width = 251
+  Height = 294
+  TabOrder = 0
+  object imgItem: TImage
+    Left = 0
+    Top = 0
+    Width = 251
+    Height = 185
+    Align = alTop
+    Center = True
+    Proportional = True
+  end
+end

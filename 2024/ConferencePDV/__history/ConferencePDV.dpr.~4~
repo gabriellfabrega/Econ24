@@ -1,0 +1,15 @@
+program ConferencePDV;
+
+uses
+  Vcl.Forms,
+  View.Principal in 'src\View\View.Principal.pas' {Form1},
+  View.Item in 'src\View\View.Item.pas' {Frame1: TFrame};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TViewPrincipal, ViewPrincipal);
+  Application.Run;
+end.

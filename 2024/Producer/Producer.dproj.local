@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/07/09 22:54:18.000.777,=C:\Users\SAMSUNG\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/07/24 18:12:42.000.641,=C:\Users\SAMSUNG\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2024/07/24 18:13:18.000.588,C:\Users\SAMSUNG\Documents\Embarcadero\Studio\Projects\Unit2.pas=C:\Users\SAMSUNG\Desktop\Conference\Producer\src\View\Producer.View.Principal.pas</Transaction>
+    <Transaction>2024/07/24 18:13:18.000.588,C:\Users\SAMSUNG\Documents\Embarcadero\Studio\Projects\Unit2.dfm=C:\Users\SAMSUNG\Desktop\Conference\Producer\src\View\Producer.View.Principal.dfm</Transaction>
+    <Transaction>2024/07/24 18:13:30.000.651,C:\Users\SAMSUNG\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\SAMSUNG\Desktop\Conference\Producer\Producer.dproj</Transaction>
+  </Transactions>
+</BorlandProject>

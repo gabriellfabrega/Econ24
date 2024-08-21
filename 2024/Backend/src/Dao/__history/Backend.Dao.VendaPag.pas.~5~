@@ -1,0 +1,48 @@
+unit Backend.Dao.VendaPag;
+
+interface
+
+uses
+  Backend.Model.VendaPag, FireDAC.Comp.Client, System.SysUtils;
+
+type
+  TDaoVenda = class
+  private
+    FConnection: TFDConnection;
+  public
+    constructor Create(AConexao: TFDConnection);
+    procedure Inserir(var AVenda: TVenda);
+  end;
+
+implementation
+
+{ TDaoVenda }
+
+constructor TDaoVenda.Create(AConexao: TFDConnection);
+begin
+  FConnection := AConexao;
+end;
+
+procedure TDaoVenda.Inserir(var AVenda: TVenda);
+var
+  LQuery: TFDQuery;
+begin
+  LQuery := TFDQuery.Create(nil);
+  try
+    LQuery.Connection := FConnection;
+
+    LQuery.Close;
+    LQuery.SQL.Text := 'INSERT INTO vendapag '+
+      '(id, idvenda, valor, forma, situacao) '+
+      'VALUES(nextval(''vendapag_id_seq''), :idvenda, :valor, :forma, :situacao)';
+    LQuery.ParamByName('idvenda').AsInteger := LPagamento.GetValue<integer>('id');
+    LQuery.ParamByName('valor').Value := LPagamento.GetValue<Currency>('valor');
+    LQuery.ParamByName('forma').AsString := LPagamento.GetValue<String>('forma');
+    LQuery.ParamByName('situacao').AsString := LPagamento.GetValue<String>('situacao');
+    LQuery.ExecSQL;
+  finally
+    LQuery.Free;
+  end;
+end;
+
+end.

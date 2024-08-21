@@ -1,0 +1,18 @@
+unit Backend.Model.VendaItem;
+
+interface
+
+type
+  TVendaItem = class
+  private
+    FIdVenda: Integer;
+    FItem: string;
+    FQtd: Integer;
+    preco')
+    total')
+  end;
+
+
+implementation
+
+end.

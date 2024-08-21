@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/07/09 22:54:18.000.777,=C:\Users\SAMSUNG\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/07/24 18:31:17.000.397,=C:\Users\SAMSUNG\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2024/07/24 18:31:47.000.692,C:\Users\SAMSUNG\Documents\Embarcadero\Studio\Projects\Unit2.pas=C:\Users\SAMSUNG\Desktop\Conference\Consumer\src\View\View.Principal.pas</Transaction>
+    <Transaction>2024/07/24 18:31:47.000.692,C:\Users\SAMSUNG\Documents\Embarcadero\Studio\Projects\Unit2.dfm=C:\Users\SAMSUNG\Desktop\Conference\Consumer\src\View\View.Principal.dfm</Transaction>
+    <Transaction>2024/07/24 18:32:00.000.223,C:\Users\SAMSUNG\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\SAMSUNG\Desktop\Conference\Consumer\Consumer.dproj</Transaction>
+    <Transaction>2024/07/24 18:33:26.000.833,C:\Users\SAMSUNG\Desktop\Conference\Consumer\src\View\View.Principal.pas=C:\Users\SAMSUNG\Desktop\Conference\Consumer\src\View\Consumer.View.Principal.pas</Transaction>
+    <Transaction>2024/07/24 18:33:26.000.833,C:\Users\SAMSUNG\Desktop\Conference\Consumer\src\View\View.Principal.dfm=C:\Users\SAMSUNG\Desktop\Conference\Consumer\src\View\Consumer.View.Principal.dfm</Transaction>
+  </Transactions>
+</BorlandProject>

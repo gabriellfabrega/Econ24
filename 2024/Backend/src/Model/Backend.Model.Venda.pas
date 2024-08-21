@@ -1,0 +1,47 @@
+unit Backend.Model.Venda;
+
+interface
+
+type
+  TVenda = class
+  private
+    FId: integer;
+    FDataHora: TDateTime;
+    FStatus: string;
+    FValor: Extended;
+    procedure SetDataHora(const Value: TDateTime);
+    procedure SetStatus(const Value: string);
+    procedure SetValor(const Value: Extended);
+    procedure SetId(const Value: integer);
+  public
+    property Id: integer read FId write SetId;
+    property DataHora: TDateTime read FDataHora write SetDataHora;
+    property Status: string read FStatus write SetStatus;
+    property Valor: Extended read FValor write SetValor;
+  end;
+
+implementation
+
+{ TVenda }
+
+procedure TVenda.SetDataHora(const Value: TDateTime);
+begin
+  FDataHora := Value;
+end;
+
+procedure TVenda.SetId(const Value: integer);
+begin
+  FId := Value;
+end;
+
+procedure TVenda.SetStatus(const Value: string);
+begin
+  FStatus := Value;
+end;
+
+procedure TVenda.SetValor(const Value: Extended);
+begin
+  FValor := Value;
+end;
+
+end.

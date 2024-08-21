@@ -1,0 +1,16 @@
+unit Backend.Model.Venda;
+
+interface
+
+type
+  TVenda = class
+  private
+    FId: integer;
+    FDataHora: TDateTime;
+
+
+  end;
+
+implementation
+
+end.

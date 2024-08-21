@@ -1,0 +1,43 @@
+object ViewItem: TViewItem
+  Left = 0
+  Top = 0
+  Width = 251
+  Height = 294
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -20
+  Font.Name = 'Segoe UI'
+  Font.Style = []
+  ParentFont = False
+  TabOrder = 0
+  object imgItem: TImage
+    AlignWithMargins = True
+    Left = 3
+    Top = 3
+    Width = 245
+    Height = 206
+    Align = alTop
+    Center = True
+    Proportional = True
+  end
+  object lblDescItem: TLabel
+    AlignWithMargins = True
+    Left = 3
+    Top = 214
+    Width = 245
+    Height = 28
+    Align = alBottom
+    Caption = 'lblDescItem'
+    ExplicitWidth = 102
+  end
+  object btnAdicionar: TButton
+    AlignWithMargins = True
+    Left = 3
+    Top = 248
+    Width = 245
+    Height = 43
+    Align = alBottom
+    Caption = 'Adicionar'
+    TabOrder = 0
+  end
+end

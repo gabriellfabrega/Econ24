@@ -1,0 +1,62 @@
+unit Backend.Dao.VendaItem;
+
+interface
+
+uses
+  Backend.Model.VendaItem, FireDAC.Comp.Client, System.SysUtils, System.Generics.Collections;
+
+type
+  TDaoVendaItem = class
+  private
+    FConnection: TFDConnection;
+  public
+    constructor Create(AConexao: TFDConnection);
+    procedure Inserir(AItens: TList<TVendaItem>);
+  end;
+
+implementation
+
+{ TDaoVenda }
+
+constructor TDaoVendaItem.Create(AConexao: TFDConnection);
+begin
+  FConnection := AConexao;
+end;
+
+procedure TDaoVendaItem.Inserir(AItens: TList<TVendaItem>);
+var
+  LQuery: TFDQuery;
+begin
+  LQuery := TFDQuery.Create(nil);
+  try
+    LQuery.Connection := FConnection;
+    LQuery.SQL.Text := 'INSERT INTO vendaitem '+
+      '(id, idvenda, item, qtd, preco, total) '+
+      'VALUES ' +
+      '(nextval(''vendaitem_id_seq''), :idvenda, :item, :qtd, :preco, :total)';
+
+    for I := 0 to Pred(LItens.Size) do
+    begin
+      LQuery.Close;
+
+      LQuery.ParamByName('idvenda').AsInteger := LIdVenda;
+      LQuery.ParamByName('item').AsString := LItens[i].GetValue<string>('item');
+      LQuery.ParamByName('qtd').AsInteger := LItens[i].GetValue<integer>('qtd');
+      LQuery.ParamByName('preco').Value := LItens[i].GetValue<Currency>('preco');
+      LQuery.ParamByName('total').Value := LItens[i].GetValue<Currency>('total');
+      LQuery.ExecSQL;
+    end;
+
+    LQuery.Close;
+    LQuery.SQL.Text := 'SELECT last_insert_rowid()';
+    LQuery.Open;
+
+    AVenda.Id := LQuery.Fields[0].AsLargeInt;
+
+  finally
+    LQuery.Free;
+  end;
+end;
+
+end.
+

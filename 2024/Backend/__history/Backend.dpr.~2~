@@ -1,0 +1,14 @@
+program Backend;
+
+uses
+  Vcl.Forms,
+  Backend.View.Principal in 'src\View\Backend.View.Principal.pas' {Form2};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TViewPrincipal, ViewPrincipal);
+  Application.Run;
+end.

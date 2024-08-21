@@ -1,0 +1,50 @@
+unit Backend.Model.VendaPag;
+
+interface
+
+type
+  TVendaPag = class
+  private
+  	FId: Integer;
+	  FIdVenda: Integer;
+	  FValor: Extended;
+	  FForma: string;
+	  FSituacao: String;
+  public
+    property FId: Integer;
+	  property FIdVenda: Integer;
+	  property FValor: Extended;
+	  property FForma: string;
+	  property Situacao: String;
+  end;
+
+implementation
+
+{ TVendaPag }
+
+procedure TVendaPag.SetFForma(const Value: string);
+begin
+  FFForma := Value;
+end;
+
+procedure TVendaPag.SetFId(const Value: Integer);
+begin
+  FFId := Value;
+end;
+
+procedure TVendaPag.SetFIdVenda(const Value: Integer);
+begin
+  FFIdVenda := Value;
+end;
+
+procedure TVendaPag.SetFValor(const Value: Extended);
+begin
+  FFValor := Value;
+end;
+
+procedure TVendaPag.SetSituacao(const Value: String);
+begin
+  FSituacao := Value;
+end;
+
+end.

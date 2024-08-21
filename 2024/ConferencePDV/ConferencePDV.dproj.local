@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/07/09 22:54:18.000.777,=C:\Users\SAMSUNG\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/07/15 18:15:42.000.216,=C:\Users\SAMSUNG\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/07/15 18:16:07.000.713,C:\Users\SAMSUNG\Desktop\Conference\ConferencePDV\src\View\View.Principal.dfm=C:\Users\SAMSUNG\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2024/07/15 18:16:07.000.713,C:\Users\SAMSUNG\Desktop\Conference\ConferencePDV\src\View\View.Principal.pas=C:\Users\SAMSUNG\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/07/15 18:16:13.000.433,C:\Users\SAMSUNG\Desktop\Conference\ConferencePDV\ConferencePDV.dproj=C:\Users\SAMSUNG\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2024/07/15 18:35:46.000.161,=C:\Users\SAMSUNG\Desktop\Conference\ConferencePDV\Unit1.pas</Transaction>
+    <Transaction>2024/07/15 18:35:57.000.506,C:\Users\SAMSUNG\Desktop\Conference\ConferencePDV\Unit1.dfm=C:\Users\SAMSUNG\Desktop\Conference\ConferencePDV\src\View\View.Item.dfm</Transaction>
+    <Transaction>2024/07/15 18:35:57.000.506,C:\Users\SAMSUNG\Desktop\Conference\ConferencePDV\Unit1.pas=C:\Users\SAMSUNG\Desktop\Conference\ConferencePDV\src\View\View.Item.pas</Transaction>
+    <Transaction>2024/07/15 18:52:25.000.554,=C:\Users\SAMSUNG\Desktop\Conference\ConferencePDV\src\Controller\Controller.Item.pas</Transaction>
+  </Transactions>
+</BorlandProject>

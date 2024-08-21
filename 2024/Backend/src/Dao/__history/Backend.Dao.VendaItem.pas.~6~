@@ -1,0 +1,55 @@
+unit Backend.Dao.VendaItem;
+
+interface
+
+uses
+  Backend.Model.VendaItem, FireDAC.Comp.Client, System.SysUtils, System.Generics.Collections;
+
+type
+  TDaoVendaItem = class
+  private
+    FConnection: TFDConnection;
+  public
+    constructor Create(AConexao: TFDConnection);
+    procedure Inserir(AItens: TVenda);
+  end;
+
+implementation
+
+{ TDaoVenda }
+
+constructor TDaoVendaItem.Create(AConexao: TFDConnection);
+begin
+  FConnection := AConexao;
+end;
+
+procedure TDaoVendaItem.Inserir(var AVenda: TVenda);
+var
+  LQuery: TFDQuery;
+begin
+  LQuery := TFDQuery.Create(nil);
+  try
+    LQuery.Connection := FConnection;
+
+    LQuery.Close;
+    LQuery.SQL.Text := 'INSERT INTO venda ' +
+      '(datahora, status, valor) ' +
+      'VALUES(:datahora, :status, :valor)';
+    LQuery.ParamByName('datahora').AsDateTime := AVenda.DataHora;
+    LQuery.ParamByName('status').AsString := AVenda.Status;
+    LQuery.ParamByName('valor').Value := AVenda.Valor;
+    LQuery.ExecSQL;
+
+    LQuery.Close;
+    LQuery.SQL.Text := 'SELECT last_insert_rowid()';
+    LQuery.Open;
+
+    AVenda.Id := LQuery.Fields[0].AsLargeInt;
+
+  finally
+    LQuery.Free;
+  end;
+end;
+
+end.
+

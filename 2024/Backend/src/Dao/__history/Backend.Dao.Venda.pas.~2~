@@ -1,0 +1,31 @@
+unit Backend.Dao.Venda;
+
+interface
+
+uses
+  Backend.Model.Venda, FireDAC.Comp.Client;
+
+type
+  TDaoVenda = class
+  private
+    FConnection: TFDConnection;
+  public
+    constructor Create(AConexao: TFDConnection);
+    function Inserir(AVenda: TVenda): Integer;
+  end;
+
+implementation
+
+{ TDaoVenda }
+
+constructor TDaoVenda.Create(AConexao: TFDConnection);
+begin
+  FConnection := AConexao;
+end;
+
+function TDaoVenda.Inserir(AVenda: TVenda): Integer;
+begin
+
+end;
+
+end.

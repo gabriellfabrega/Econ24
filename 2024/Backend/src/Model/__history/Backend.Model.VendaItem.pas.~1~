@@ -1,0 +1,7 @@
+unit Backend.Model.VendaItem;
+
+interface
+
+implementation
+
+end.

@@ -1,0 +1,101 @@
+unit View.Principal;
+
+interface
+
+uses
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
+  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs,
+  FMX.Controls.Presentation, FMX.Edit, FMX.StdCtrls, FMX.Memo.Types,
+  FMX.ScrollBox, FMX.Memo, TMS.MQTT.Global, TMS.MQTT.Client, StrUtils, System.JSON,
+  FMX.Objects, FMX.Layouts;
+
+type
+  TVIewPrincipal = class(TForm)
+    TMSMQTTClient1: TTMSMQTTClient;
+    Layout1: TLayout;
+    Image1: TImage;
+    Timer1: TTimer;
+    lbStatus: TLabel;
+    procedure TMSMQTTClient1ConnectedStatusChanged(ASender: TObject;
+      const AConnected: Boolean; AStatus: TTMSMQTTConnectionStatus);
+    procedure TMSMQTTClient1PublishReceived(ASender: TObject; APacketID: Word;
+      ATopic: string; APayload: TArray<System.Byte>);
+    procedure Timer1Timer(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  VIewPrincipal: TVIewPrincipal;
+
+implementation
+
+uses
+  View.Pix;
+
+{$R *.fmx}
+
+procedure TVIewPrincipal.Timer1Timer(Sender: TObject);
+begin
+  Timer1.Enabled := false;
+  TMSMQTTClient1.Connect(false);
+end;
+
+procedure TVIewPrincipal.TMSMQTTClient1ConnectedStatusChanged(ASender: TObject;
+  const AConnected: Boolean; AStatus: TTMSMQTTConnectionStatus);
+begin
+  if AConnected then
+    TMSMQTTClient1.Subscribe('/mqtt/payment-request',qosAtLeastOnce);
+
+  lbStatus.Text := IfThen(AConnected,'Online','Offline');
+end;
+
+procedure TVIewPrincipal.TMSMQTTClient1PublishReceived(ASender: TObject;
+  APacketID: Word; ATopic: string; APayload: TArray<System.Byte>);
+var
+  LJson: TJsonObject;
+  LJsonRetorno: TJSONObject;
+  LId: Integer;
+  LValor: Double;
+begin
+  ShowMessage(aTopic);
+  try
+    if ATopic = '/mqtt/payment-request'  then
+    begin
+      if not Assigned(ViewPix) then
+        Application.CreateForm(TViewPix,ViewPix);
+
+      LJson := TJSONObject.ParseJSONValue(TEncoding.UTF8.GetString(APayload)) as TJSONObject;
+      try
+        LId := LJson.GetValue<Integer>('id');
+        LValor := LJson.GetValue<Double>('valor',0);
+
+        ViewPix.Valor := LValor;
+
+
+        ViewPix.Show;
+        begin
+          LJsonRetorno := TJSONObject.Create;
+          try
+            LJson.AddPair('id',LId);
+            LJson.AddPair('valor',LValor);
+            LJson.AddPair('forma','PIX');
+            LJson.AddPair('situacao','APROVADO');
+
+            TMSMQTTClient1.Publish('/payment-response',LJson.ToJSON,qosAtLeastOnce,false);
+          finally
+            LJsonRetorno.DisposeOf;
+          end;
+        end;
+      finally
+        LJson.DisposeOf;
+      end;
+    end;
+  except on e:Exception do
+    ShowMessage(e.Message);
+  end;
+end;
+
+end.

@@ -1,0 +1,35 @@
+unit Backend.Dto.RetornoIdVenda;
+
+interface
+
+type
+  TDtoRetornoVenda = class(TInterfacedObject)
+  private
+    FId: integer;
+  public
+    class function New: TDtoRetornoIdVenda;
+    function Id(AId: Integer): TDtoRetornoIdVenda;
+    function Build: TDtoRetornoIdVenda;
+  end;
+
+implementation
+
+{ TDtoRetornoIdVenda }
+
+function TDtoRetornoVenda.Build: TDtoRetornoIdVenda;
+begin
+  result := self;
+end;
+
+function TDtoRetornoVenda.Id(AId: Integer): TDtoRetornoIdVenda;
+begin
+  result := self;
+  FId := AId;
+end;
+
+class function TDtoRetornoVenda.New: TDtoRetornoIdVenda;
+begin
+  Result := Self.Create;
+end;
+
+end.

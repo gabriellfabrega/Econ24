@@ -1,0 +1,17 @@
+program Backend;
+
+uses
+  Vcl.Forms,
+  Backend.View.Principal in 'src\View\Backend.View.Principal.pas' {Form2},
+  Backend.Controller.Venda in 'src\Controller\Backend.Controller.Venda.pas',
+  Backend.Dto.RetornoVenda in 'src\Dto\Backend.Dto.RetornoVenda.pas',
+  Backend.Controller.Pagamento in 'src\Controller\Backend.Controller.Pagamento.pas';
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TViewPrincipal, ViewPrincipal);
+  Application.Run;
+end.

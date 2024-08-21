@@ -1,0 +1,84 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{499F5494-8B16-4DD7-8519-6C3A58646D76}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="ConferencePDV\ConferencePDV.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Producer\Producer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Consumer\Consumer.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Backend\Backend.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Mobile\Mobile.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ConferencePDV">
+        <MSBuild Projects="ConferencePDV\ConferencePDV.dproj"/>
+    </Target>
+    <Target Name="ConferencePDV:Clean">
+        <MSBuild Projects="ConferencePDV\ConferencePDV.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ConferencePDV:Make">
+        <MSBuild Projects="ConferencePDV\ConferencePDV.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Producer">
+        <MSBuild Projects="Producer\Producer.dproj"/>
+    </Target>
+    <Target Name="Producer:Clean">
+        <MSBuild Projects="Producer\Producer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Producer:Make">
+        <MSBuild Projects="Producer\Producer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Consumer">
+        <MSBuild Projects="Consumer\Consumer.dproj"/>
+    </Target>
+    <Target Name="Consumer:Clean">
+        <MSBuild Projects="Consumer\Consumer.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Consumer:Make">
+        <MSBuild Projects="Consumer\Consumer.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Backend">
+        <MSBuild Projects="Backend\Backend.dproj"/>
+    </Target>
+    <Target Name="Backend:Clean">
+        <MSBuild Projects="Backend\Backend.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Backend:Make">
+        <MSBuild Projects="Backend\Backend.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Mobile">
+        <MSBuild Projects="Mobile\Mobile.dproj"/>
+    </Target>
+    <Target Name="Mobile:Clean">
+        <MSBuild Projects="Mobile\Mobile.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Mobile:Make">
+        <MSBuild Projects="Mobile\Mobile.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ConferencePDV;Producer;Consumer;Backend;Mobile"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ConferencePDV:Clean;Producer:Clean;Consumer:Clean;Backend:Clean;Mobile:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ConferencePDV:Make;Producer:Make;Consumer:Make;Backend:Make;Mobile:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
