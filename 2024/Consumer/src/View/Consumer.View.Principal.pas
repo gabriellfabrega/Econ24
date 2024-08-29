@@ -30,7 +30,13 @@ type
     procedure IcsMQTTClient1Msg(Sender: TObject; aTopic: UTF8String;
       const aMessage: AnsiString; aQos: TMQTTQOSType; aRetained: Boolean);
     procedure btnAtivarClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
+    procedure PubAck(Sender: TObject; aCode: word);
+    procedure PubComp(Sender: TObject; aCode: word);
+    procedure PubRec(Sender: TObject; aCode: word);
+    procedure ConnAck(Sender: TObject; aCode: Byte);
+    procedure PubRel(Sender: TObject; aCode: word);
     { Private declarations }
   public
     { Public declarations }
@@ -52,6 +58,7 @@ end;
 procedure TViewPrincipal.btnAtivarClick(Sender: TObject);
 begin
   IcsMQTTClient1.ClientID := edtClientId.Text;
+  IcsMQTTClient1.Host := '127.0.0.1';
   IcsMQTTClient1.Activate(true);
 end;
 
@@ -103,6 +110,39 @@ begin
   mLog.Lines.Add('[ONLINE] - Conectado');
 end;
 
+procedure TViewPrincipal.PubAck(Sender: TObject; aCode: word);
+begin
+  mLog.Lines.Add('[PUB ACK] - ' + IntToStr(ACode));
+end;
+
+procedure TViewPrincipal.PubComp(Sender: TObject; aCode: word);
+begin
+  mLog.Lines.Add('[PUB COMP] - ' + IntToStr(ACode));
+end;
+
+procedure TViewPrincipal.PubRec(Sender: TObject; aCode: word);
+begin
+  mLog.Lines.Add('[PUB REC] - ' + IntToStr(ACode));
+end;
+
+procedure TViewPrincipal.ConnAck(Sender: TObject; aCode: Byte);
+begin
+  mLog.Lines.Add('[CONN ACK] - ' + IntToStr(ACode));
+end;
+
+procedure TViewPrincipal.PubRel(Sender: TObject; aCode: word);
+begin
+  mLog.Lines.Add('[PUB REL] - ' + IntToStr(ACode));
+end;
+
+procedure TViewPrincipal.FormCreate(Sender: TObject);
+begin
+  IcsMQTTClient1.Parser.OnConnAck := ConnAck;
+  IcsMQTTClient1.Parser.OnPubAck := PubAck;
+  IcsMQTTClient1.Parser.OnPubRec := PubRec;
+  IcsMQTTClient1.Parser.OnPubComp := PubComp;
+//  IcsMQTTClient1.Parser.OnPubRel := PubRel;
+end;
 
 {$R *.dfm}
 

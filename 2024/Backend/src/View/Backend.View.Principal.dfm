@@ -28,7 +28,7 @@ object ViewPrincipal: TViewPrincipal
     Clean = False
     Broker = False
     AutoSubscribe = False
-    Host = 'ec2-54-175-73-62.compute-1.amazonaws.com'
+    Host = 'ec2-54-198-90-92.compute-1.amazonaws.com'
     Port = 1883
     LocalBounce = False
     SslVerifyCerts = False
@@ -47,7 +47,9 @@ object ViewPrincipal: TViewPrincipal
   end
   object FDConnection1: TFDConnection
     Params.Strings = (
-      'Database=C:\Users\SAMSUNG\Desktop\Conference\Db\CONFERENCE.db'
+      
+        'Database=C:\Users\SAMSUNG\Desktop\Embarcadero-Conference\2024\Db' +
+        '\CONFERENCE.db'
       'OpenMode=ReadWrite'
       'LockingMode=Normal'
       'DriverID=SQLite')

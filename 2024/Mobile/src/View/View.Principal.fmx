@@ -240,18 +240,18 @@ object VIewPrincipal: TVIewPrincipal
     Text = 'Offline'
     TabOrder = 4
   end
-  object TMSMQTTClient1: TTMSMQTTClient
-    BrokerHostName = 'ec2-54-175-73-62.compute-1.amazonaws.com'
-    Version = '2.0.8.0'
-    OnConnectedStatusChanged = TMSMQTTClient1ConnectedStatusChanged
-    OnPublishReceived = TMSMQTTClient1PublishReceived
-    Left = 136
-    Top = 480
-  end
   object Timer1: TTimer
     Interval = 2000
     OnTimer = Timer1Timer
     Left = 144
     Top = 200
+  end
+  object TMSMQTTClient1: TTMSMQTTClient
+    BrokerHostName = 'ec2-54-198-90-92.compute-1.amazonaws.com'
+    Version = '2.0.8.0'
+    OnConnectedStatusChanged = TMSMQTTClient1ConnectedStatusChanged
+    OnPublishReceived = TMSMQTTClient1PublishReceived
+    Left = 136
+    Top = 480
   end
 end

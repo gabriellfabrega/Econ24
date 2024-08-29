@@ -27,6 +27,15 @@ type
       var CloseClient: Boolean);
     procedure IcsMQTTClient1EnableChange(Sender: TObject);
     procedure btnPublicarClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+
+    procedure ConnAck(Sender : TObject; aCode : Byte);
+    procedure PubAck(Sender : TObject; aCode : word);
+    procedure PubRec(Sender : TObject; aCode : word);
+    procedure PubComp(Sender : TObject; aCode : word);
+    procedure PubRel(Sender : TObject; aCode : word);
+    procedure IcsMQTTClient1Msg(Sender: TObject; aTopic: UTF8String;
+      const aMessage: AnsiString; aQos: TMQTTQOSType; aRetained: Boolean);
   private
   public
     { Public declarations }
@@ -41,6 +50,7 @@ implementation
 
 procedure TViewPrincipal.btnAtivarClick(Sender: TObject);
 begin
+  IcsMQTTClient1.Host := '127.0.0.1';
   IcsMQTTClient1.Activate(true);
 end;
 
@@ -57,6 +67,21 @@ begin
     edtMsg.Text,
     TMQTTQOSType(ComboBox1.ItemIndex),
     false);
+end;
+
+procedure TViewPrincipal.ConnAck(Sender: TObject; aCode: Byte);
+begin
+  mLog.Lines.Add('[CONN ACK] - ' + IntToStr(ACode));
+end;
+
+procedure TViewPrincipal.FormCreate(Sender: TObject);
+begin
+  IcsMQTTClient1.Parser.OnConnAck := ConnAck;
+  IcsMQTTClient1.Parser.OnPubAck := PubAck;
+  IcsMQTTClient1.Parser.OnPubRec := PubRec;
+  IcsMQTTClient1.Parser.OnPubComp := PubComp;
+//  IcsMQTTClient1.Parser.OnPubRel := PubRel;
+
 end;
 
 procedure TViewPrincipal.IcsMQTTClient1ClientID(Sender: TObject;
@@ -81,6 +106,16 @@ begin
   mLog.Lines.Add('[MONITOR] - ' + aStr);
 end;
 
+procedure TViewPrincipal.IcsMQTTClient1Msg(Sender: TObject; aTopic: UTF8String;
+  const aMessage: AnsiString; aQos: TMQTTQOSType; aRetained: Boolean);
+begin
+  mLog.Lines.Add('[MENSAGEM] --------------------------');
+  mLog.Lines.Add('Topico: ' + aTopic);
+  mLog.Lines.Add('Payload: ' + aMessage);
+  mLog.Lines.Add('QoS: ' + Ord(aQos).ToString);
+  mLog.Lines.Add('-------------------------------------');
+end;
+
 procedure TViewPrincipal.IcsMQTTClient1Offline(Sender: TObject;
   Graceful: Boolean);
 begin
@@ -90,6 +125,27 @@ end;
 procedure TViewPrincipal.IcsMQTTClient1Online(Sender: TObject);
 begin
   mLog.Lines.Add('[ONLINE] - Conectado');
+end;
+
+procedure TViewPrincipal.PubAck(Sender: TObject; aCode: word);
+begin
+  mLog.Lines.Add('[PUB ACK] - ' + IntToStr(ACode));
+end;
+
+procedure TViewPrincipal.PubComp(Sender: TObject; aCode: word);
+begin
+  mLog.Lines.Add('[PUB COMP] - ' + IntToStr(ACode));
+end;
+
+procedure TViewPrincipal.PubRec(Sender: TObject; aCode: word);
+begin
+  mLog.Lines.Add('[PUB REC] - ' + IntToStr(ACode));
+
+end;
+
+procedure TViewPrincipal.PubRel(Sender: TObject; aCode: word);
+begin
+  mLog.Lines.Add('[PUB REL] - ' + IntToStr(ACode));
 end;
 
 end.

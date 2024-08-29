@@ -10,6 +10,7 @@ object ViewPrincipal: TViewPrincipal
   Font.Height = -16
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 21
   object edtTopico: TLabeledEdit
     Left = 8
@@ -89,7 +90,7 @@ object ViewPrincipal: TViewPrincipal
     Clean = False
     Broker = False
     AutoSubscribe = False
-    Host = '172.20.10.5'
+    Host = 'ec2-54-198-90-92.compute-1.amazonaws.com'
     Port = 1883
     LocalBounce = False
     SslVerifyCerts = False
@@ -102,6 +103,7 @@ object ViewPrincipal: TViewPrincipal
     OnOffline = IcsMQTTClient1Offline
     OnEnableChange = IcsMQTTClient1EnableChange
     OnFailure = IcsMQTTClient1Failure
+    OnMsg = IcsMQTTClient1Msg
     Left = 304
     Top = 248
   end
